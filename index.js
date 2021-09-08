@@ -66,7 +66,7 @@ class Counter {
   countDown() {
     // ✨ implement
     if(this.count > 0){
-      return this.count - 1
+      return this.count --
     }
     else{
       return 0
@@ -82,6 +82,7 @@ class Seasons {
   constructor() {
     // ✨ initialize whatever properties are needed
     this.seasons = ['summer', 'fall', 'winter', 'spring']
+    this.count = 0
   }
 
   /**
@@ -98,6 +99,16 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    
+    if (this.count < 5){
+      const current = this.seasons[this.count]
+      this.count ++
+      return current
+    }
+    else{
+      this.count = 0
+      return this.seasons[this.count]
+    }
   }
 }
 
@@ -114,6 +125,7 @@ class Car {
     // ✨ initialize whatever other properties are needed
     this.milesPerGallon = mpg
     this.model = name
+    this.tanksize = tankSize
   }
 
   /**
