@@ -143,6 +143,16 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    const milesCanDrive = this.tank * this.milesPerGallon
+    if (distance <= milesCanDrive) {
+      this.odometer = this.odometer + distance
+      this.tank = this.tank - (distance/ this.milesPerGallon)
+    }
+    else{
+      this.tank = 0
+      this.odometer = this.odometer + milesCanDrive
+    }
+    return this.odometer
   }
 
   /**
@@ -158,10 +168,12 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
-    this.tank += gallons
+    if (this.tank < 20){
+      this.tank += gallons
+    }
   }
 }
-
+ 
 /**
  * [Exercise 7] Asynchronously resolves whether a number is even
  * @param {number} number - the number to test for evenness
@@ -177,6 +189,7 @@ class Car {
  */
 function isEvenNumberAsync(number) {
   // ✨ implement
+  return number % 2 === 0 || false
 }
 
 module.exports = {
