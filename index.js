@@ -8,6 +8,9 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const newObj = JSON.parse(JSON.stringify(obj))
+  Object.keys(newObj).map(k => newObj[k] = newObj[k].trim())
+  return newObj
 }
 
 /**
@@ -20,6 +23,8 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  Object.keys(obj).map(k => obj[k] = obj[k].trim())
+  return obj
 }
 
 /**
@@ -32,6 +37,8 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+  const largest = integers.reduce((p, c) => p.integer > c.integer ? p : c)
+  return largest.integer;
 }
 
 class Counter {
@@ -41,6 +48,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+     this.count = initialNumber
   }
 
   /**
@@ -57,6 +65,13 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+    if(this.count > 0){
+      return this.count --
+    }
+    else{
+      return 0
+    }
+
   }
 }
 
@@ -66,6 +81,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.seasons = ['summer', 'fall', 'winter', 'spring']
+    this.count = 0
   }
 
   /**
@@ -82,6 +99,16 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    
+    if (this.count < 5){
+      const current = this.seasons[this.count]
+      this.count ++
+      return current
+    }
+    else{
+      this.count = 0
+      return this.seasons[this.count]
+    }
   }
 }
 
@@ -96,6 +123,9 @@ class Car {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
     // ✨ initialize whatever other properties are needed
+    this.milesPerGallon = mpg
+    this.model = name
+    this.tanksize = tankSize
   }
 
   /**
@@ -113,6 +143,16 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    const milesCanDrive = this.tank * this.milesPerGallon
+    if (distance <= milesCanDrive) {
+      this.odometer = this.odometer + distance
+      this.tank = this.tank - (distance/ this.milesPerGallon)
+    }
+    else{
+      this.tank = 0
+      this.odometer = this.odometer + milesCanDrive
+    }
+    return this.odometer
   }
 
   /**
@@ -128,9 +168,12 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    if (this.tank < 20){
+      this.tank += gallons
+    }
   }
 }
-
+ 
 /**
  * [Exercise 7] Asynchronously resolves whether a number is even
  * @param {number} number - the number to test for evenness
@@ -146,6 +189,7 @@ class Car {
  */
 function isEvenNumberAsync(number) {
   // ✨ implement
+  return number % 2 === 0 || false
 }
 
 module.exports = {
